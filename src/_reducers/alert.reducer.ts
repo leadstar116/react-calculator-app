@@ -4,7 +4,7 @@ import {
     ALERT_CLEAR,
     ALERT_LOADING
 } from '../_actions/alert.actions'
-import { AlertState } from '../_constants/alert.interface';
+import { AlertState } from '../_constants/alert.interface'
 
 const alertState: AlertState = {
     alertClass: '',
