@@ -11,6 +11,8 @@ This is a very basic calculator application. Only four basic operations.
 <p>This backend api is hosted on heroku: (https://nestjs-calculator-backend-api.herokuapp.com/api)</p>
 <p>If you want to run both applications on the local, please change apiUrl to http://localhost:3001 (backend api is supposed to run on port 3001) in `_heplers/calculate.ts` </p>
 
+## Screenshot:
+<img src="https://content.screencast.com/users/SupremeDev/folders/Default/media/f0af44e7-a50a-42aa-a5ec-87311e633e98/screenshot.png" />
 
 ## Available Scripts
 
