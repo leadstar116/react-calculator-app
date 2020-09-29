@@ -4,21 +4,23 @@ import { ThunkDispatch } from 'redux-thunk'
 import { Action } from 'redux';
 import { calculateReset, calculateUpdate } from '../_actions/calculate.actions';
 import { CalculatorState } from '../_constants/calculate.interface'
+import { alertFailure } from '../_actions/alert.actions';
 
 type MyRootState = {};
 type MyExtraArg = undefined;
 type MyThunkDispatch = ThunkDispatch<MyRootState, MyExtraArg, Action>;
 
 /**
- * Given a button name and a calculator data object, return an updated
- * calculator data object.
+ * Params: a button name and a calculator state object
+ * Action: Run calculation by calling API endpoint.
  *
- * Calculator data object contains:
+ * Calculate state object contains:
  *   total:String      the running total
  *   next:String       the next number to be operated on with the total
  *   operation:String  +, -, etc.
  */
-const calculate = (state: CalculatorState, buttonName: string) => (dispatch: MyThunkDispatch) => {
+const apiUrl = 'https://nestjs-calculator-backend-api.herokuapp.com/calculate'
+const calculate = (state: CalculatorState, buttonName: string) => async (dispatch: MyThunkDispatch) => {
   if (buttonName === "AC") {
     return dispatch(calculateReset())
   }
@@ -58,16 +60,27 @@ const calculate = (state: CalculatorState, buttonName: string) => (dispatch: MyT
 
   if (buttonName === "%") {
     if (state.operation && state.next) {
-      /*
-      const result = operate(state.total, state.next, state.operation);
-      return {
-        total: Big(result)
-          .div(Big("100"))
-          .toString(),
-        next: null,
-        operation: null,
-      };
-      */
+      try {
+        let response = await fetch(
+          apiUrl,
+          {
+              method: 'POST',
+              headers: { 'Content-type': 'application/json' },
+              body: JSON.stringify(state)
+          }
+        )
+        const result = await response.json()
+        return dispatch(calculateUpdate({
+          ...state,
+          total: Big(result)
+            .div(Big("100"))
+            .toString(),
+          next: "",
+          operation: "",
+        }))
+      } catch(e) {
+        return dispatch(alertFailure(e))
+      }
     }
     if (state.next) {
       return dispatch(calculateUpdate({
@@ -99,13 +112,25 @@ const calculate = (state: CalculatorState, buttonName: string) => (dispatch: MyT
 
   if (buttonName === "=") {
     if (state.next && state.operation) {
-      /*
-      return {
-        total: operate(state.total, state.next, state.operation),
-        next: null,
-        operation: null,
-      };
-      */
+      try {
+        let response = await fetch(
+          apiUrl,
+          {
+              method: 'POST',
+              headers: { 'Content-type': 'application/json' },
+              body: JSON.stringify(state)
+          }
+        )
+        const result = await response.json()
+        return dispatch(calculateUpdate({
+          ...state,
+          total: result,
+          next: "",
+          operation: "",
+        }))
+      } catch(e) {
+        return dispatch(alertFailure(e))
+      }
     } else {
       // '=' with no operation, nothing to do
       return;
@@ -138,13 +163,25 @@ const calculate = (state: CalculatorState, buttonName: string) => (dispatch: MyT
 
   // User pressed an operation button and there is an existing operation
   if (state.operation) {
-    /*
-    return {
-      total: operate(state.total, state.next, state.operation),
-      next: null,
-      operation: buttonName,
-    };
-    */
+    try {
+      let response = await fetch(
+        apiUrl,
+        {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify(state)
+        }
+      )
+      const result = await response.json()
+      return dispatch(calculateUpdate({
+        ...state,
+        total: result,
+        next: "",
+        operation: buttonName,
+      }))
+    } catch(e) {
+      return dispatch(alertFailure(e))
+    }
   }
 
   // no operation yet, but the user typed one
