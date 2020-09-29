@@ -50,6 +50,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
+    "start": "npm run start:prod",
     "dev": "webpack-dev-server --mode development --open --hot",
     "bundle": "webpack",
     "build": "webpack --mode production",
