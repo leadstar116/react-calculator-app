@@ -6,6 +6,12 @@ This is a very basic calculator application. Only four basic operations.
 2) Applying best coding and collaborative practices
 3) Unit test
 
+## API:
+<p>Collaborating with calculator backend api. (https://github.com/leadstar116/nestjs-calculator-backend-api)</p>
+<p>This backend api is hosted on heroku: (https://nestjs-calculator-backend-api.herokuapp.com/api)</p>
+<p>If you want to run both applications on the local, please change apiUrl to http://localhost:3001 or back-end api url in `_heplers/calculate.ts` </p>
+
+
 ## Available Scripts
 
 In the project directory, you can run:
