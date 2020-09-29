@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Display Component should render with given props 1`] = `
+<div
+  className="calculator-display"
+>
+  <div>
+    0
+  </div>
+</div>
+`;

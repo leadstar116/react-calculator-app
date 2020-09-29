@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { initialState } from '../_constants/state.interface'
 import calculate from '../_helpers/calculate'

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Component should render with given props 1`] = `
+<div
+  className="calculator-button orange"
+>
+  <button
+    onClick={[Function]}
+  >
+    ÷
+  </button>
+</div>
+`;
