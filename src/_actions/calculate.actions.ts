@@ -9,5 +9,5 @@ export const calculateReset = () => ({
 export const CALCULATE_UPDATE = 'CALCULATE_UPDATE'
 export const calculateUpdate = (data: CalculatorState) => ({
     type: CALCULATE_UPDATE,
-    payload: { data }
+    payload: data
 })

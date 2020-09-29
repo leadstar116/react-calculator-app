@@ -18,7 +18,7 @@ const calculateReducer = (state = calculatorState, action: any) => {
         operation: ""
       }
     case CALCULATE_UPDATE:
-      return payload.data
+      return payload
     default:
       break;
   }
