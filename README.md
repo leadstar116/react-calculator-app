@@ -9,7 +9,7 @@ This is a very basic calculator application. Only four basic operations.
 ## API:
 <p>Collaborating with calculator backend api. (https://github.com/leadstar116/nestjs-calculator-backend-api)</p>
 <p>This backend api is hosted on heroku: (https://nestjs-calculator-backend-api.herokuapp.com/api)</p>
-<p>If you want to run both applications on the local, please change apiUrl to http://localhost:3001 or back-end api url in `_heplers/calculate.ts` </p>
+<p>If you want to run both applications on the local, please change apiUrl to http://localhost:3001 (backend api is supposed to run on port 3001) in `_heplers/calculate.ts` </p>
 
 
 ## Available Scripts
